@@ -130,6 +130,15 @@
         .btn-whatsapp:hover {
             background: #1da851;
         }
+        /* TEXTO DO BOTÃO - PADRÃO DESKTOP */
+.btn-text-mobile {
+  display: none;
+}
+
+.btn-text-desktop {
+  display: inline;
+}
+
 
         /* HEADER */
         header {
@@ -552,16 +561,69 @@
             }
             
             .header-container {
-                flex-direction: column;
-                gap: 15px;
+                flex-wrap: nowrap !important;
+                align-items: center;
+                  display: flex;
+                justify-content: space-between;
+
             }
             
+            .logo-wrapper {
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .logo-wrapper img {
+                height: 20px !important;
+                
+            }
+            
+            .logo {
+                white-space: nowrap;
+                line-height: 1;
+                font-size: 1.2rem !important;
+            }
+            .btn-text-desktop {
+                display: none;
+            }
+
+            .btn-text-mobile {
+                display: inline;
+            }
+
+            /* Exibir o CTA do header em mobile (modificado) */
+            .header-cta {
+                flex-shrink: 0;
+            }
+            
+            .header-cta .btn {
+                padding: 8px 12px !important;
+                font-size: 0.75rem !important;
+            }
+            
+            .header-cta .btn i {
+                font-size: 0.9rem !important;
+            }
+
             .hero {
-                padding: 120px 0 60px;
+                padding: 100px 0 60px !important;
                 text-align: center;
             }
             
-            .btn {
+            /* Ajuste do último CTA - DEVE VIR ANTES da regra geral .btn */
+            .final-cta .btn {
+                padding: 16px 20px !important;
+                font-size: 1rem !important;
+                max-width: 100% !important;
+                width: 90% !important; /* Adicionado */
+                margin: 0 auto; /* Adicionado */
+                display: block; /* Adicionado */
+            }
+            
+            /* Regra geral para botões - DEVE VIR DEPOIS das específicas */
+            .btn:not(.header-cta .btn) {
                 padding: 18px 30px;
                 width: 100%;
                 max-width: 350px;
@@ -576,6 +638,32 @@
             
             .service-card {
                 padding: 30px 20px;
+            }
+        }
+
+        /* Para telas muito pequenas (iPhone SE, etc.) */
+        @media (max-width: 375px) {
+            .logo span {
+    display: none;
+  }
+  .logo {
+    font-size: 1rem !important;
+  }
+            .logo span:last-child {
+                display: none;
+            }
+            
+            .logo-wrapper img {
+                height: 45px !important;
+            }
+            
+            .header-cta .btn {
+                padding: 8px 10px !important; /* Ajuste o padding se necessário */
+                font-size: 0.7rem !important;
+            }
+            
+            .header-cta .btn i {
+                display: none; /* Esconde o ícone em telas muito pequenas */
             }
         }
 
@@ -597,14 +685,15 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-container">
+        <div class="header-container">
             <div class="logo-wrapper">
                 <img src="image/Logo-image.png" alt="FF Climatização" style="height: 70px">
                 <div class="logo">FF <span>CLIMATIZAÇÃO</span></div>
             </div>
             <div class="header-cta">
                 <a href="https://api.whatsapp.com/send?phone=5516996176377&text=Olá, gostaria de solicitar um orçamento." target="_blank" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+                    <i class="fab fa-whatsapp"></i> <span class="btn-text-desktop">Chamar no WhatsApp</span>
+                    <span class="btn-text-mobile">WhatsApp</span>
                 </a>
             </div>
         </div>
